@@ -184,11 +184,10 @@ def get_obs(lat_min, lon_min, inc, timeback, max_pool):
                         message,
                         upsert=True,
                     )
+                    station = {}
                     for key in message:
-                        df_running.loc[
-                            df_running["station_id"] == message["station_id"],
-                            key,
-                        ] = message[key]
+                        station[key] = [message[key]]
+                    pd.concat([df_running, pd.DataFrame.from_dict(station)])
                     print(message)
                 except Exception:
                     print("error")
