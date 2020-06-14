@@ -86,9 +86,11 @@ def get_prev(message, awc):
 
 
 def get_obs(lat_min, lon_min, inc, timeback, max_pool):
-    url = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?\
-        dataSource=metars&requestType=retrieve&format=xml&\
-        ExceptionmostRecentForEachStation=true"
+    url = (
+        "https://www.aviationweather.gov/adds/dataserver_current/httpparam?"
+        + "dataSource=metars&requestType=retrieve&format=xml&"
+        + "mostRecentForEachStation=true"
+    )
     url += "&minLon=" + str(lon_min)
     url += "&maxLon=" + str(min(180, lon_min + inc + 1))
     url += "&minLat=" + str(lat_min)
