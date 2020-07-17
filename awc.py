@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import time
 import os
+import pytest
 
 # from multiprocessing import Pool
 
@@ -41,6 +42,10 @@ def convert(val):
     if val == " ":
         val = None
     return val
+
+
+def test_convert():
+    assert convert(42) == 42.
 
 
 client = MongoClient(os.environ["MONGODB_CLIENT"])
