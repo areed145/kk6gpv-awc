@@ -1,5 +1,5 @@
 dnspython==1.16.0
-numpy==1.17.2
+numpy==1.19.0
 pandas==0.25.1
 pymongo==3.10.1
 pytest
