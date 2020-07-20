@@ -45,7 +45,7 @@ def convert(val):
 
 
 def test_convert():
-    assert convert(42) == 42.
+    assert convert(42) == 42.0
 
 
 client = MongoClient(os.environ["MONGODB_CLIENT"])
