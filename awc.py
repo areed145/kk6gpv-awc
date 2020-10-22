@@ -1,6 +1,6 @@
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timezone
 from pymongo import MongoClient
 import pandas as pd
 import numpy as np
@@ -139,9 +139,9 @@ def get_obs(lat_min, lon_min, inc, timeback, max_pool):
                     prev["observation_time"], utc=True
                 )
                 if message["observation_time"] > prev["observation_time"][0]:
-                    message["timestamp"] = datetime.utcnow()
+                    message["timestamp"] = datetime.now(timezone.utc)
                     message["topic"] = "wx/awc"
-                    message["ttl"] = datetime.utcnow()
+                    message["ttl"] = datetime.now(timezone.utc)
                     message["temp_c_var"] = get_var(message, 150, "temp_c")
                     message["altim_in_hg_var"] = get_var(
                         message, 250, "altim_in_hg"
@@ -179,9 +179,9 @@ def get_obs(lat_min, lon_min, inc, timeback, max_pool):
                     print("duplicate post")
             except Exception:
                 print("first station post")
-                message["timestamp"] = datetime.utcnow()
+                message["timestamp"] = datetime.now(timezone.utc)
                 message["topic"] = "wx/awc"
-                message["ttl"] = datetime.utcnow()
+                message["ttl"] = datetime.now(timezone.utc)
                 try:
                     awc.replace_one(
                         {"station_id": message["station_id"]},
